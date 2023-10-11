@@ -3,6 +3,7 @@ node_modules/
 npm-debug.*
 .DS_Store
 package-lock.json
+.idea
 
 node_modules/**/*
 
