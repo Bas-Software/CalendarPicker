@@ -360,7 +360,7 @@ export default class CalendarPicker extends Component {
     this.setState((state) => ({
       selectedStartDate: null,
       selectedEndDate: null,
-      renderMonthParams: { 
+      renderMonthParams: {
         ...state.renderMonthParams,
         selectedStartDate: null,
         selectedEndDate: null,
@@ -481,6 +481,7 @@ export default class CalendarPicker extends Component {
       restrictMonthNavigation,
       headingLevel,
       dayLabelsWrapper,
+      calendarContentStyle,
       customDayHeaderStyles,
       selectMonthTitle,
       selectYearTitle,
@@ -570,24 +571,26 @@ export default class CalendarPicker extends Component {
             dayLabelsWrapper={dayLabelsWrapper}
             customDayHeaderStyles={customDayHeaderStyles}
           />
-          { scrollable ?
-            <Scroller
-              ref={scroller => this.scroller = scroller}
-              data={monthsList}
-              renderMonth={this.renderMonth}
-              renderMonthParams={renderMonthParams}
-              maxSimultaneousMonths={this.numMonthsScroll}
-              initialRenderIndex={initialScrollerIndex}
-              minDate={minDate}
-              maxDate={maxDate}
-              restrictMonthNavigation={restrictMonthNavigation}
-              updateMonthYear={this.updateMonthYear}
-              onMonthChange={onMonthChange}
-              horizontal={horizontal}
-            />
-            :
-            this.renderMonth(renderMonthParams)
-          }
+          <View style={calendarContentStyle}>
+            { scrollable ?
+              <Scroller
+                ref={scroller => this.scroller = scroller}
+                data={monthsList}
+                renderMonth={this.renderMonth}
+                renderMonthParams={renderMonthParams}
+                maxSimultaneousMonths={this.numMonthsScroll}
+                initialRenderIndex={initialScrollerIndex}
+                minDate={minDate}
+                maxDate={maxDate}
+                restrictMonthNavigation={restrictMonthNavigation}
+                updateMonthYear={this.updateMonthYear}
+                onMonthChange={onMonthChange}
+                horizontal={horizontal}
+              />
+              :
+              this.renderMonth(renderMonthParams)
+            }
+          </View>
         </View>
       );
     }
